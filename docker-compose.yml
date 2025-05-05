@@ -1,0 +1,57 @@
+version: '3'
+
+x-op-restart-policy: &restart-policy
+  restart: unless-stopped
+
+x-op-networks: &networks
+  networks:
+    - boilerplate-network
+
+x-op-env-file: &env-file
+  env_file:
+    - .env
+
+services:
+  boilerplate-api:
+    container_name: boilerplate-api
+    image: boilerplate-api:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - ${PORT}:${PORT}
+    depends_on:
+      - boilerplate-db
+      - boilerplate-redis
+    volumes:
+      - .:/app
+      - boilerplate-node_modules:/app/node_modules
+
+  boilerplate-db:
+    container_name: boilerplate-db
+    image: postgres:12-alpine
+    ports:
+      - ${DATABASE_PORT}:${DATABASE_PORT}
+    volumes:
+      - boilerplate-dbdata:/var/lib/postgresql/data/pgdata
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - PGPORT=${DATABASE_PORT}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
+
+  boilerplate-redis:
+    container_name: boilerplate-redis
+    image: redis:alpine
+    volumes:
+      - boilerplate-redis:/data
+
+volumes:
+  boilerplate-dbdata:
+  boilerplate-node_modules:
+  boilerplate-redis:
+
+networks:
+  boilerplate-network:
+    driver: bridge
