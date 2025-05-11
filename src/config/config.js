@@ -41,10 +41,6 @@ const envVarsSchema = Joi.object()
     SPACE_SECRET: Joi.string().required(),
     SPACE_ENDPOINT: Joi.string().required(),
     SPACE_ROOT_DIR: Joi.string().required(),
-    // TWILIO
-    TWILIO_AUTH_TOKEN: Joi.string().optional(),
-    TWILIO_ACCOUNT_SID: Joi.string().optional(),
-    TWILIO_NUMBER: Joi.string().optional(),
   })
   .unknown();
 
@@ -96,10 +92,5 @@ module.exports = {
     secret: envVars.SPACE_SECRET,
     endpoint: envVars.SPACE_ENDPOINT,
     rootDir: envVars.SPACE_ROOT_DIR,
-  },
-  twilio: {
-    authToken: envVars.TWILIO_AUTH_TOKEN,
-    accountSid: envVars.TWILIO_ACCOUNT_SID,
-    phoneNumber: envVars.TWILIO_NUMBER,
   },
 };

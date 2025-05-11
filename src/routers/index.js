@@ -6,6 +6,8 @@ const coreRoute = require('./core/router');
 const publicRoute = require('./public/router');
 
 // define development route dependencies
+const docsRoute = require('../docs/docs.router');
+const queueRoute = require('../infrastructure/queue/queue.route');
 
 const router = express.Router();
 
@@ -22,6 +24,14 @@ const routes = [
 
 const devRoutes = [
   // routes available only in development mode
+  {
+    path: '/queue-monitor',
+    route: queueRoute,
+  },
+  {
+    path: '/docs',
+    route: docsRoute,
+  },
 ];
 
 routes.forEach((route) => {

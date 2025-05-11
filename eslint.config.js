@@ -8,6 +8,9 @@ const prettierPlugin = require('eslint-plugin-prettier');
 module.exports = [
   js.configs.recommended,
   {
+    ignores: ['node_modules', 'bin', 'src/database'],
+  },
+  {
     files: ['**/*.js'],
     languageOptions: {
       ecmaVersion: 2018,

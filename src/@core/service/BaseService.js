@@ -1,4 +1,4 @@
-const { addPageMetadata } = require('../../common/helpers/pagination');
+const { addPageMetadata } = require('../common');
 
 class BaseService {
   constructor(model) {
