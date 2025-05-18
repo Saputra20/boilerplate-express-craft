@@ -9,42 +9,42 @@ const loginResponse = objectResponseSwagger(
   true,
   httpStatus.OK,
   messages.AUTH.LOGIN_SUCCESS,
-  loginData
+  loginData,
 );
 
 const logoutResponse = objectResponseSwagger(
   true,
   httpStatus.OK,
   messages.AUTH.LOGOUT_SUCCESS,
-  null
+  null,
 );
 
 const requestVerifyEmailResponse = objectResponseSwagger(
   true,
   httpStatus.OK,
   messages.COMMON.OK,
-  requestVerifyEmail
+  requestVerifyEmail,
 );
 
 const requestOTPResponse = objectResponseSwagger(
   true,
   httpStatus.OK,
   messages.COMMON.OK,
-  requestOTP
+  requestOTP,
 );
 
 const requestResetPasswordResponse = objectResponseSwagger(
   true,
   httpStatus.OK,
   messages.AUTH.FORGOT_PASSWORD_SUCCESS,
-  requestResetPassword
+  requestResetPassword,
 );
 
 const resetPasswordResponse = objectResponseSwagger(
   true,
   httpStatus.OK,
   messages.AUTH.RESET_PASSWORD_SUCCESS,
-  null
+  null,
 );
 
 module.exports = {

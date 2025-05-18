@@ -10,7 +10,7 @@ router.get(
   '/',
   swaggerUi.setup(specs, {
     customSiteTitle: config.name,
-  })
+  }),
 );
 
 router.get('/swagger.json', (req, res) => {

@@ -59,7 +59,7 @@ const queryParser = (query) => {
   const fields = Object.keys(query);
   for (const field of fields) {
     const q = query[field];
-    // eslint-disable-next-line prefer-const
+
     let [op, value] = q.split(':');
     if (value) {
       const opSymbol = OPERATORS[op];

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable class-methods-use-this */
+
 const fs = require('fs');
 const path = require('path');
 const { status: httpStatus } = require('http-status');

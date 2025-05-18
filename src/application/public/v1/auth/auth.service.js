@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 const { status: httpStatus } = require('http-status');
 const ApiError = require('../../../../@core/interceptor/ApiError');
 const userService = require('../user/user.service');

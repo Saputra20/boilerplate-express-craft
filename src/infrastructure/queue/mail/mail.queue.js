@@ -1,4 +1,3 @@
-/* eslint-disable global-require */
 const { createQueue } = require('..');
 const emailService = require('../../mail/mail.service');
 

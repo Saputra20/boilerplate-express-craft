@@ -38,7 +38,7 @@ router.post(
   '/login',
   rateLimiter.authLimiter,
   validate(authValidation.login),
-  authController.login
+  authController.login,
 );
 
 /**
@@ -66,7 +66,7 @@ router.post(
   '/register',
   rateLimiter.registerLimiter,
   validate(authValidation.register),
-  authController.register
+  authController.register,
 );
 
 /**
@@ -127,7 +127,7 @@ router.post('/logout_all', auth(), authController.logoutAll);
 router.post(
   '/request_verify_email',
   validate(authValidation.requestVerifyEmail),
-  authController.requestVerifyEmail
+  authController.requestVerifyEmail,
 );
 
 /**
@@ -219,7 +219,7 @@ router.post('/verify_otp', validate(authValidation.verifyOTP), authController.ve
 router.post(
   '/request_reset_password',
   validate(authValidation.requestResetPassword),
-  authController.requestResetPassword
+  authController.requestResetPassword,
 );
 
 /**

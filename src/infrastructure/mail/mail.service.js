@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-/* eslint-disable class-methods-use-this */
+
 const fs = require('fs');
 const ejs = require('ejs');
 const juice = require('juice');

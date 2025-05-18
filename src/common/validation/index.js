@@ -7,7 +7,7 @@ const password = (value, helpers) => {
     // !value.match(/[-!@$%^&*()_+|~=`{}[\]:";'<>?,./]/)
   ) {
     return helpers.message(
-      'Kata sandi harus berisi minimal 8 karakter dan maksimal 64 karakter, dan setidaknya berisi 1 huruf, 1 angka.'
+      'Kata sandi harus berisi minimal 8 karakter dan maksimal 64 karakter, dan setidaknya berisi 1 huruf, 1 angka.',
     );
   }
   return value;
