@@ -13,7 +13,13 @@
     "migration:create": "yarn sequelize-cli migration:create --underscored",
     "model:create": "yarn sequelize-cli model:create --underscored",
     "seed:create": "yarn sequelize-cli seed:generate",
-    "seed": "yarn sequelize-cli db:seed:all"
+    "seed": "yarn sequelize-cli db:seed:all",
+    "generate:key": "cd ./src/config/secret;openssl ecparam -name prime256v1 -genkey -noout -out private_key.pem; openssl ec -in private_key.pem -pubout -out public_key.pem",
+    "prepare": "husky",
+    "test:e2e": "jest --config ./test/jest-e2e.json"
+  },
+  "bin": {
+    "crudify": "node_modules/@saputra20/crudify/index.js"
   },
   "author": "Saputra Nugraha",
   "license": "ISC",
