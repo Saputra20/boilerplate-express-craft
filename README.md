@@ -284,7 +284,7 @@ module.exports = {
 
 ## 🧩 Integration Notes
 
-- Compatible with generator CRUD [here](https://www.npmjs.com/package/@dctrl/crudify?activeTab=readme)
+- Compatible with generator CRUD [here](https://www.npmjs.com/package/@dctrl/crudify)
 ---
 
 ## 📄 License
