@@ -284,7 +284,7 @@ module.exports = {
 
 ## 🧩 Integration Notes
 
-- Compatible with generator CRUD [here](https://github.com/Saputra20/crudify)
+- Compatible with generator CRUD [here](https://www.npmjs.com/package/@dctrl/crudify?activeTab=readme)
 ---
 
 ## 📄 License
