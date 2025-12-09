@@ -18,15 +18,12 @@
     "prepare": "husky",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
-  "bin": {
-    "crudify": "node_modules/@saputra20/crudify/index.js"
-  },
   "author": "Saputra Nugraha",
   "license": "ISC",
   "dependencies": {
     "@bull-board/api": "^5.7.1",
     "@bull-board/express": "^5.7.1",
-    "@saputra20/crudify": "^1.0.5",
+    "@dctrl/crudify": "^1.1.0",
     "aws-sdk": "^2.1429.0",
     "basic-auth": "^2.0.1",
     "bcryptjs": "^2.4.3",
