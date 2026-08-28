@@ -1,28 +1,24 @@
-FROM node:20-alpine AS builder
-
-RUN mkdir /app
-
-WORKDIR /app
-
-COPY package.json yarn.lock ./
-
-RUN yarn --pure-lockfiles
-
-COPY --chown=node:node . .
-
-FROM node:20-alpine AS prod
-
-ENV TZ 'Asia/Jakarta'
-
-RUN apk upgrade --update \
-  && apk add -U tzdata \
-  && rm -rf \
-  /var/cache/apk/*
-
-RUN mkdir /app
+# syntax=docker/dockerfile:1
+FROM oven/bun:1.4.0-alpine AS dependencies
 
 WORKDIR /app
 
-COPY --from=builder /app /app
+COPY package.json bun.lock ./
 
-CMD sh -c "yarn migrate && node src/index.js"
+RUN bun install --frozen-lockfile --production
+
+FROM oven/bun:1.4.0-alpine AS production
+
+ENV NODE_ENV=production
+ENV TZ=Asia/Jakarta
+
+RUN apk add --no-cache tzdata
+
+WORKDIR /app
+
+COPY --from=dependencies /app/node_modules ./node_modules
+COPY --chown=bun:bun . .
+
+USER bun
+
+CMD ["sh", "-c", "bun run migrate && bun run start"]

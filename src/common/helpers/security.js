@@ -1,4 +1,3 @@
-const bcrypt = require('bcryptjs');
 const CONST = require('../constants');
 
 /**
@@ -7,7 +6,10 @@ const CONST = require('../constants');
  * @returns {string}
  */
 const hash = (plaintext) => {
-  return bcrypt.hashSync(plaintext, CONST.jwt.PASSWORD_SALT_ROUND);
+  return Bun.password.hashSync(plaintext, {
+    algorithm: 'bcrypt',
+    cost: CONST.jwt.PASSWORD_SALT_ROUND,
+  });
 };
 
 /**
@@ -17,7 +19,7 @@ const hash = (plaintext) => {
  * @returns {boolean}
  */
 const compareHash = (plaintext, hashed) => {
-  return bcrypt.compareSync(plaintext, hashed);
+  return Bun.password.verifySync(plaintext, hashed);
 };
 
 module.exports = {

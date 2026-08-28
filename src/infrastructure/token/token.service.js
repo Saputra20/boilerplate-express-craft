@@ -3,7 +3,6 @@
 const fs = require('fs');
 const path = require('path');
 const { status: httpStatus } = require('http-status');
-const { hash } = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const CryptoJS = require('crypto-js');
@@ -97,7 +96,10 @@ class TokenService extends BaseService {
     const secret = this.getKeyFile(SECRET_FILE);
     const payloadJSON = JSON.parse(JSON.stringify(payload));
     const sessionPayload = this.sessionPayload(payload.audience, payload);
-    const sid = await hash(sessionPayload, CONST.jwt.PASSWORD_SALT_ROUND);
+    const sid = Bun.password.hashSync(sessionPayload, {
+      algorithm: 'bcrypt',
+      cost: CONST.jwt.PASSWORD_SALT_ROUND,
+    });
 
     return jwt.sign({ ...payloadJSON, sid }, secret, {
       algorithm: ALGORITHM,
@@ -183,7 +185,10 @@ class TokenService extends BaseService {
    * @returns {object}
    */
   async generateOtpToken(payload, issuer = CONST.jwt.ISSUER_PUBLIC) {
-    const hashedOtp = await hash(payload.otp, CONST.jwt.PASSWORD_SALT_ROUND);
+    const hashedOtp = Bun.password.hashSync(payload.otp, {
+      algorithm: 'bcrypt',
+      cost: CONST.jwt.PASSWORD_SALT_ROUND,
+    });
     const audience = CONST.token.OTP;
     const _token = await this.signToken(
       { hashedOtp, email: payload.email, id: payload.id, audience },
@@ -219,7 +224,10 @@ class TokenService extends BaseService {
    * @returns {string}
    */
   async generateResetPasswordToken(payload, issuer = CONST.jwt.ISSUER_PUBLIC) {
-    const hashedCode = await hash(payload.code, CONST.jwt.PASSWORD_SALT_ROUND);
+    const hashedCode = Bun.password.hashSync(payload.code, {
+      algorithm: 'bcrypt',
+      cost: CONST.jwt.PASSWORD_SALT_ROUND,
+    });
     const audience = CONST.token.RESET_PASSWORD;
     const _token = await this.signToken(
       { email: payload.email, id: payload.id, audience, hashedCode },
@@ -302,7 +310,10 @@ class TokenService extends BaseService {
    * @returns {object}
    */
   async generateEmailVerifiedToken(payload, issuer = CONST.jwt.ISSUER_PUBLIC) {
-    const hashedCode = await hash(payload.code, CONST.jwt.PASSWORD_SALT_ROUND);
+    const hashedCode = Bun.password.hashSync(payload.code, {
+      algorithm: 'bcrypt',
+      cost: CONST.jwt.PASSWORD_SALT_ROUND,
+    });
     const audience = CONST.token.VERIFY_EMAIL;
     const _token = await this.signToken(
       { hashedCode, email: payload.email, id: payload.id, audience },

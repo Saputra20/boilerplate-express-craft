@@ -1,4 +1,3 @@
-const dayjs = require('dayjs');
 const rateLimit = require('express-rate-limit');
 
 const authLimiter = rateLimit({
@@ -38,7 +37,7 @@ const requestOtpLimiter = rateLimit({
       status: false,
       message: 'Too many requests, please try again later.',
       data: {
-        timestamps: dayjs().add('5', 'minutes').unix(),
+        timestamps: Math.floor((Date.now() + 5 * 60 * 1000) / 1000),
       },
     };
   },

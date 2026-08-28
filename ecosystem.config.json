@@ -3,6 +3,7 @@
     {
       "name": "boilerplate-express",
       "script": "src/index.js",
+      "interpreter": "bun",
       "instances": 1,
       "autorestart": true,
       "watch": false,

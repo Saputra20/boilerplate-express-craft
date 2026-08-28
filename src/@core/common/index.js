@@ -1,6 +1,6 @@
 const { IPagination } = require('../interface');
-const dayjs = require('dayjs');
 const db = require('../../database/models');
+const { startOfDayIso, endOfDayIso } = require('../../common/helpers/date');
 
 // eslint-disable-next-line no-unused-vars
 const { data: IData, options: IOptions, response: IResponse } = IPagination;
@@ -70,10 +70,7 @@ const queryParser = (query) => {
       } else if (['betweenDate'].includes(op)) {
         const [start, end] = value.split(',');
         result.where[field] = {
-          [opSymbol]: [
-            dayjs(start).startOf('day').toISOString(),
-            dayjs(end).endOf('day').toISOString(),
-          ],
+          [opSymbol]: [startOfDayIso(start), endOfDayIso(end)],
         };
       } else {
         result.where[field] = { [opSymbol]: isNaN(value) ? value : Number(value) };

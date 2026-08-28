@@ -1,6 +1,6 @@
-# Boilerplate Express
+# Bun + Express Boilerplate
 
-> A clean and scalable Express.js boilerplate designed for building modern RESTful APIs with maintainability in mind.
+> Express 5 REST API boilerplate running on Bun 1.4.0.
 
 [![license](https://img.shields.io/npm/l/@dctrl/crudify.svg)](LICENSE)
 
@@ -20,6 +20,11 @@
 
 ## 📦 Installation
 
+Requirements:
+
+- Bun 1.4.0
+- Node.js 24.20.0 LTS only when a Node fallback is needed
+
 Clone the repo:
 
 ```bash
@@ -38,7 +43,7 @@ cp .env.example .env
 Generate key:
 
 ```bash
-yarn generate:key
+bun run generate:key
 ```
 ---
 
@@ -46,7 +51,13 @@ yarn generate:key
 
 Run mode development
 ```bash
-yarn dev
+bun run dev
+```
+
+Run production mode:
+
+```bash
+bun run start
 ```
 
 Run with PM2 
@@ -59,37 +70,37 @@ pm2 start ecosystem.config.json
 Generate model with migration:
 
 ```bash
-yarn model:create --name User --attributes=name:string,email:string
+bun run model:create -- --name User --attributes=name:string,email:string
 ```
 
 Generate migration only:
 
 ```bash
-yarn migration:create --name create-table-users-table.js
+bun run migration:create -- --name create-table-users-table.js
 ```
 
 Generate seeder only:
 
 ```bash
-yarn seed:create --name initialize-account.js
+bun run seed:create -- --name initialize-account.js
 ```
 
 Running migration:
 
 ```bash
-yarn migrate
+bun run migrate
 ```
 
 Running seeder:
 
 ```bash
-yarn seed
+bun run seed
 ```
 
 Rollback migration using sequelize-cli:
 
 ```bash
-yarn sequelize-cli db:migrate:undo
+bunx --bun sequelize-cli db:migrate:undo
 ```
 ---
 
